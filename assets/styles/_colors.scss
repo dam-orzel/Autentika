@@ -1,0 +1,34 @@
+// Shades Primary
+$white: #f8f8f8;
+$gray: #bbbbbb;
+$gray--light: #ebebeb;
+
+$black: #0f0f0f;
+
+$border__primary: #dadada;
+$border__primary--dark: #9e9e9e;
+
+// Colors Primary
+$blue: #4568dc;
+$blue--dark: #324faf;
+
+$purple: #b06ab3;
+
+$gold: #ffd700;
+
+// Status Colors
+
+$error: #dc143c;
+$success: #2b9e2b;
+
+// Functions
+
+// Shades from light colors
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+// Shades from dark colors
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}

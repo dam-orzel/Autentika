@@ -116,7 +116,7 @@ export default {
             this.$store.commit("helpers/Notification_isActive", true);
             this.$store.commit(
               "helpers/Notification_text",
-              "Brak pasujących wyników, spróbuj ponownie!"
+              "Brak pasujących wyników!"
             );
             setTimeout(() => {
               this.$store.commit("helpers/Notification_isActive", false);
@@ -143,6 +143,7 @@ export default {
     addMore() {
       this.searchSteps += 4;
       this.searchRepos();
+      this.$store.commit("helpers/activateLoader", true);
     },
     clearSteps() {
       this.searchSteps = 10;
@@ -165,16 +166,18 @@ header {
     justify-content: center;
     align-items: center;
     height: 100%;
-    background: #4568dc;
-    background: linear-gradient(to right, #b06ab3, #4568dc);
+    background: $blue;
+    background: linear-gradient(to right, $purple, $blue);
 
     .input__container {
       position: relative;
       .search__input {
         border: none;
+        background: $white;
         padding: 8px 30px 8px 15px;
         border-radius: 5px;
         min-width: 350px;
+        font-weight: 500;
       }
       .fa-search {
         position: absolute;
@@ -183,14 +186,23 @@ header {
         transform: translateY(-50%);
         cursor: pointer;
         padding: 8px 8px;
-        color: #4568dc;
+        color: $blue;
+        transition: $transition-time;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        &:hover {
+          color: $blue--dark;
+        }
+        &:active {
+          background: $gray--light;
+        }
       }
     }
     .search__login {
       text-decoration: none;
       text-transform: uppercase;
-      color: white;
-      background: black;
+      color: $white;
+      background: $black;
       padding: 8px 20px;
       border-radius: 5px;
       margin-top: 10px;
@@ -208,12 +220,17 @@ main {
     flex-wrap: wrap;
     margin: 50px 0;
     .repositories__item {
-      border: 1px solid rgb(218, 218, 218);
+      border: 1px solid $border__primary;
       border-radius: 5px;
       padding: 10px 20px;
       margin: 10px;
       width: 40%;
       cursor: pointer;
+      transition: $transition-time;
+      &:hover {
+        border-color: $border__primary--dark;
+        background: $gray--light;
+      }
       .item__name {
         // display: inline;
       }
@@ -221,10 +238,10 @@ main {
         text-decoration: none;
         font-size: 12px;
         font-weight: 600;
-        color: #7b7bff;
-        transition: 0.3s;
+        color: $blue;
+        transition: $transition-time;
         &:hover {
-          color: #5757e0;
+          color: $blue--dark;
         }
       }
       .item__desc {
@@ -247,10 +264,10 @@ main {
             margin-bottom: 10px;
           }
           .fa-star {
-            color: gold;
+            color: $gold;
           }
           .fa-code-branch {
-            color: mediumpurple;
+            color: $purple;
           }
           span {
             font-size: 14px;
@@ -266,19 +283,19 @@ main {
     width: 30vw;
     height: 40px;
     border: none;
-    background: #4568dc;
+    background: $blue;
     border-radius: 5px;
     text-transform: uppercase;
     font-weight: 600;
-    color: white;
+    color: $white;
     cursor: pointer;
     margin-top: 20px;
-    transition: 0.3s;
+    transition: $transition-time;
     &:hover {
-      background: #4e73ec;
+      background: $blue--dark;
     }
     &:active {
-      background: #819eff;
+      background: shade($blue--dark, 30%);
     }
   }
 }

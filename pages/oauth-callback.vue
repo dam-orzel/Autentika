@@ -91,7 +91,7 @@ section.loginPage {
     }
     .login__text--redirect {
       font-size: 12px;
-      color: gray;
+      color: $gray;
     }
   }
 }

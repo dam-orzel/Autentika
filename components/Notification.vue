@@ -32,18 +32,20 @@ export default {
   right: -450px;
   padding: 10px 60px;
   border-radius: 5px;
-  color: white;
-  font-weight: 500;
-  transition: 0.5s ease-in-out;
+  transition: $transition-time ease-in-out;
   font-size: 13px;
   &.active {
     right: 10px;
   }
   &.error {
-    background: crimson;
+    background: $error;
   }
   &.success {
-    background: green;
+    background: $success;
+  }
+  span {
+    color: $white;
+    font-weight: 500;
   }
 }
 </style>
