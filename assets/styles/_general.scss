@@ -1,0 +1,11 @@
+input,
+textarea,
+button {
+  &:focus {
+    outline: none;
+  }
+}
+
+.wrapper {
+  margin: 0 10%;
+}
