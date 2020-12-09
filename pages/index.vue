@@ -27,22 +27,13 @@
           class="repositories__item"
           v-for="repository in repositoriesList"
           :key="repository.id"
+          @click="takeInfoFromRepo(repository)"
         >
           <h3 class="item__name">{{ repository.name }}</h3>
           <a class="item__url" :href="repository.url" target="_blank"
             >Go to {{ repository.name }} on Github!</a
           >
           <span class="item__desc">{{ repository.description }}</span>
-          <div class="item__socials">
-            <div class="socials__stars">
-              <i class="fas fa-star"></i>
-              <span>{{ repository.stargazers.totalCount }}</span>
-            </div>
-            <div class="socials__forks">
-              <i class="fas fa-code-branch"></i>
-              <span>{{ repository.forks.totalCount }}</span>
-            </div>
-          </div>
         </div>
       </section>
       <button
@@ -87,6 +78,9 @@ export default {
                               totalCount
                             }
                             forks {
+                              totalCount
+                            }
+                            watchers {
                               totalCount
                             }
                         }
@@ -149,6 +143,13 @@ export default {
       this.searchSteps = 10;
       this.searchRepos();
       this.$store.commit("helpers/activateLoader", true);
+    },
+    takeInfoFromRepo(repo) {
+      this.$store.commit("repositoryItem/repositoryAccess", repo);
+      this.$router.push({
+        path: `/${repo.id}`,
+        component: require("./_RepositoryItem.vue")
+      });
     }
   },
   computed: {
@@ -249,31 +250,6 @@ main {
         margin-top: 10px;
         height: 50px;
         font-size: 14px;
-      }
-      .item__socials {
-        width: 100%;
-        display: flex;
-        justify-content: space-around;
-        .socials__stars,
-        .socials__forks {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          .fas {
-            font-size: 24px;
-            margin-bottom: 10px;
-          }
-          .fa-star {
-            color: $gold;
-          }
-          .fa-code-branch {
-            color: $purple;
-          }
-          span {
-            font-size: 14px;
-            font-weight: 500;
-          }
-        }
       }
     }
   }
