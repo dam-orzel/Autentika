@@ -146,6 +146,7 @@ export default {
     },
     takeInfoFromRepo(repo) {
       this.$store.commit("repositoryItem/repositoryAccess", repo);
+      this.$store.commit("helpers/activateLoader", false);
       this.$router.push({
         path: `/${repo.id}`,
         component: require("./_RepositoryItem.vue")
@@ -231,9 +232,6 @@ main {
       &:hover {
         border-color: $border__primary--dark;
         background: $gray--light;
-      }
-      .item__name {
-        // display: inline;
       }
       .item__url {
         text-decoration: none;

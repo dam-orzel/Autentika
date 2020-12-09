@@ -24,28 +24,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-.notification {
-  position: fixed;
-  bottom: 10px;
-  right: -450px;
-  padding: 10px 60px;
-  border-radius: 5px;
-  transition: $transition-time ease-in-out;
-  font-size: 13px;
-  &.active {
-    right: 10px;
-  }
-  &.error {
-    background: $error;
-  }
-  &.success {
-    background: $success;
-  }
-  span {
-    color: $white;
-    font-weight: 500;
-  }
-}
-</style>
